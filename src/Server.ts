@@ -1,5 +1,6 @@
 
 import * as express from 'express';
+import * as bodyparser from 'body-parser';
 
 export default class Server
 {
@@ -15,18 +16,8 @@ export default class Server
         return this.app;
     }
 
-    public setupRoutes()
-    {
-        // const{ env, apiPrefix} = this.config;
     
-
-        this.app.use('/health-check', (req,res) =>
-        {
-        res.send('I am OK');
-        })   
-    
-    }
-    public run()
+     public run()
     {
         const{ port } = this.config;
         this.app.listen(port,()=>
@@ -35,5 +26,21 @@ export default class Server
             console.log(message);
         }
         )
+       
+        this.app.use(bodyparser.json());
+        this.app.use(bodyparser.urlencoded({ extended: true }));
+        this.app.get('/', (req,res) =>
+        {
+        res.send('Hi This my Page')
+        
+       
+        })  
+        this.app.post('/',(req,res)=>
+        {
+            console.log(req.body);
+            res.send(req.body);
+        }
+        )
+    
     }
 }

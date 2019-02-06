@@ -4,3 +4,4 @@ import config from "./config/configuration";
 const server = new Server(config);
 
 
+server.run();
