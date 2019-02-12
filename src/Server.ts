@@ -1,8 +1,11 @@
 
 import * as express from 'express';
 import * as bodyparser from 'body-parser';
+import { notFoundRoute,errorHandler } from './libs/routes';
+import { router } from './router';
 
-export default class Server
+
+ export class Servers
 {
     private app: express.Express;
     
@@ -11,36 +14,54 @@ export default class Server
         this.app = express();
     }
 
-    getApplication()
+    public bootstrap()
     {
-        return this.app;
+        this.setupRoutes();
+        this.initBodyParser();
+        return this;
     }
 
+    public setupRoutes()
+    {
+        const { app } = this;
+        app.use('/health-check',(req,res)=>{
+            res.send('I am OK');
+        })
+        app.use('/api',router)
+        app.use(notFoundRoute);
+        app.use(errorHandler);
+        
+        
+    
+    
+    }
+     
+    public initBodyParser()
+    {
+        this.app.use(bodyparser.urlencoded({ extended: false }))
+        this.app.use(bodyparser.json())
+       
+    }
     
      public run()
     {
         const{ port } = this.config;
-        this.app.listen(port,()=>
+   
+        this.app.listen(port,(err)=>
         {
+            // if(err){throw err;}
             const message = `App is listening at port ${port}`;
             console.log(message);
         }
         )
+    
        
-        this.app.use(bodyparser.json());
-        this.app.use(bodyparser.urlencoded({ extended: true }));
-        this.app.get('/', (req,res) =>
-        {
-        res.send('Hi This my Page')
         
+          
        
-        })  
-        this.app.post('/',(req,res)=>
-        {
-            console.log(req.body);
-            res.send(req.body);
-        }
-        )
+     
+       
+        
     
     }
 }

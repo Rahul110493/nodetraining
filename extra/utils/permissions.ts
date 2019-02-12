@@ -1,17 +1,10 @@
-var permissions=
-{
-    'getUsers': {
-        all: ['head-trainer'],
-        read : ['trainee', 'trainer'],
-        write : ['trainer'],
-        delete: [],
-        }
-}
-
- function hasPermission(moduleName,role,permissionType)
+import { permissions } from '../constants'
+export  function hasPermission(moduleName,role,permissionType)
 {
   const module=permissions[moduleName]
+  console.log(module)
   const users=module[permissionType]
+  console.log(users)
 //   users.forEach(element => {
     
 //       if(element === role)
@@ -26,7 +19,8 @@ var permissions=
 //   });
     for(const [index, element] of users.entries())
      {
-        if(element === role)
+         console.log(element)
+        if(element === role && element !== undefined)
               {
                 console.log(element)
                 console.log(role)
@@ -34,12 +28,13 @@ var permissions=
                 return true;
    
          }
-         else
-         {
-             return false
-         }
-
+        
 }
+return false
 }
 
-console.log(hasPermission('getUsers','trainer','all'))
+
+
+
+
+

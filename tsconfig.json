@@ -65,6 +65,7 @@
   },
   "exclude": ["dist", "**/*.spec.ts"],
   "include": [
+    "extra",
     "src"
   ],
   "types": ["src/types"]

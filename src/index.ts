@@ -1,7 +1,9 @@
-import Server from "./Server";
+import { Servers } from "./Server";
 import config from "./config/configuration";
 
-const server = new Server(config);
+const server = new Servers(config);
 
-
+server.bootstrap();
 server.run();
+
+export {server}

@@ -1,30 +1,9 @@
-var users = 
-[
-    {
-    traineeEmail: 'trainee1@successive.tech',
-    reviewerEmail: 'reviewer1@successive.tech',
-    }
-];
-validUsers=0
-invalidUsers=0
-function validateEmail(email)
-{
-    
-    var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(regex.test(email))
-    {
-        
-        if(email.indexOf("@successive.tech", email.length - "@successive.tech".length) !== -1){
-         
-            return true;
-        }
-    }
-    else
-    {
-        return false; 
-    }
-}
-function validateUsers(users)
+import {users} from '../constants'
+import {validateEmail} from './helpers'
+var validUsers=0
+var invalidUsers=0
+
+export default function validateUsers(users)
 {
 //  for(const [index, element] of users.entries())
 //  {
@@ -69,5 +48,5 @@ function validateUsers(users)
     console.log(`Invalid users are ${invalidUsers}`);
 }
 
-validateUsers(users)
+
 
