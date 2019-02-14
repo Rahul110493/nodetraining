@@ -12,15 +12,14 @@ const validation = {
         in: ['body'],
         required: true,
         string: true,
-        custom(value) {
-          //  throw { error: "Error Occurred", message: "Message" };
-        },
+        
       },
       name: {
         errorMessage: 'Name is required',
         in: ['body'],
         regex: /^[a-zA-Z\\s]*$/,
         required: true,
+        
       },
     },
   
@@ -46,7 +45,7 @@ const validation = {
         in: ['body'],
         isObject: true,
         required: true,
-        // custom(dataToUpdate) {value},
+        
         },
       id: {
         in: ['body'],

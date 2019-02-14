@@ -1,4 +1,4 @@
-import { permissions } from '../constants'
+import {permissions} from '../constants'
 export  function hasPermission(moduleName,role,permissionType)
 {
   const module=permissions[moduleName]
@@ -21,9 +21,3 @@ export  function hasPermission(moduleName,role,permissionType)
 }
 return false
 }
-
-
-
-
-
-

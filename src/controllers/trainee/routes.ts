@@ -1,7 +1,9 @@
 import * as express from 'express'
 import traineeController from './controller'
 import validation from './validation'
-import validationHandler from '../../libs/routes/validationHandler';
+import {validationHandler} from '../../libs/routes';
+import {authMiddleware} from '../../libs/routes';
+
 
 const traineeRouter = express.Router();
 
@@ -10,10 +12,10 @@ const { get,post,put, delete:del } = traineeController;
 
 
 
-// traineeRouter.get('/',validationHandler(getData),get)
-traineeRouter.post('/',validationHandler(postData),post)
-// traineeRouter.put('/',put)
-// traineeRouter.delete('/',validationHandler(deleteData),del)
+traineeRouter.get('/',validationHandler(getData),get),
+traineeRouter.post('/',authMiddleware('getUsers','read'),validationHandler(postData),post),
+traineeRouter.put('/',validationHandler(putData),put),
+traineeRouter.delete('/:id',validationHandler(deleteData),del)
 
 export {traineeRouter}
 
