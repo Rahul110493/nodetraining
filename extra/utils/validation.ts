@@ -1,34 +1,24 @@
-import {users} from '../constants'
-import {validateEmail} from './helpers'
-var validUsers=0
-var invalidUsers=0
+import { users } from '../constants'
+import { validateEmail } from './helpers'
+var validUsers = 0
+var invalidUsers = 0
 
-export default function validateUsers(users)
-{
-//  for(const [index, element] of users.entries())
-//  {
-//    const { traineeEmail,reviewerEmail} = element;
-//    if(validateEmail)
-//  }
-    
-    
+export default function validateUsers(users) {
     users.forEach(element => {
         console.log(element)
-        for (var prop in element)
-         {
-        
-            
-            
-            if (validateEmail(element[prop]))
-            {
-                
-                validUsers+=1
-                
+        for (var prop in element) {
+
+
+
+            if (validateEmail(element[prop])) {
+
+                validUsers += 1
+
             }
-            else{
-                invalidUsers+=1
+            else {
+                invalidUsers += 1
             }
-         }
+        }
 
 
         // const { traineeEmail,reviewerEmail} = element;
