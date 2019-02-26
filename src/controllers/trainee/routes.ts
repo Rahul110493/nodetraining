@@ -13,7 +13,7 @@ const { get,post,put, delete:del } = traineeController;
 
 
 traineeRouter.get('/',validationHandler(getData),get),
-traineeRouter.post('/',authMiddleware('getUsers','read'),validationHandler(postData),post),
+traineeRouter.post('/',validationHandler(postData),post),
 traineeRouter.put('/',validationHandler(putData),put),
 traineeRouter.delete('/:id',validationHandler(deleteData),del)
 
